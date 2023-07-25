@@ -11,6 +11,6 @@ int main()
     {
         scanf("%d",&x);
         n = 360/(180-(2*x));
-        printf("%d",n);
+        printf("%d \n",n);
     }
 }
