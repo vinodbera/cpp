@@ -1,4 +1,30 @@
+#include<stdio.h>
+#include<limits.h>
+int main(){
+    int N;
+    scanf("%d",&N);
+    int W[N];
+    for(int i=0;i<N;i++){
+        scanf("%d",&W[i]);
+    }
+    int min=INT_MAX;
+    for(int i=0;i<N;i++){
+        if(W[i]<min){
+            min=W[i];
+        }
+    }
+    int moves=0;
+    for(int i=0;i<N;i++){
+        moves+=W[i]-min;
+    }
+    printf("%d\n", moves);
+}
+
+
+/*Approach 2(Some issues)
+
 #include <stdio.h>
+#include <limits.h>
 int main(void)
 {
     int N;
@@ -11,29 +37,16 @@ int main(void)
     {
         scanf("%d", &W[i]);
     }
-    int max = -1000;
-    int min = 100000;
-    for (i = 0; i < N; i++)
+    int max = INT_MIN, min = INT_MAX;
+    while (min != max)
     {
-        if (W[i] < min)
-        {
-            min = W[i];
-            idxMin = i;
-        }
-        if (W[i] > max)
-        {
-            max = W[i];
-            idxMax = i;
-        }
-    }
-    while (W[idxMin] != W[idxMax])
-    {
+        max = INT_MIN;
+        min = INT_MAX;
         for (i = 0; i < N; i++)
         {
             if (W[i] < min)
             {
                 min = W[i];
-                idxMin = i;
             }
             if (W[i] > max)
             {
@@ -41,20 +54,15 @@ int main(void)
                 idxMax = i;
             }
         }
+        moves += (max - min);
         for (int i = 0; i < N; i++)
         {
-            if (i = idxMax)
+            if (i != idxMax)
             {
-                continue;
-            }
-            W[i] += 1;
-            moves++;
-            if (W[idxMin] == W[idxMax])
-            {
-                break;
+                W[i] += moves;
             }
         }
     }
     printf("%d", moves);
     return 0;
-}
+}*/
